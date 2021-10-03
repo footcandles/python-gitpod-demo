@@ -11,12 +11,41 @@
     <title>Job Zone</title>
 </head>
 <body>
-    <h2>Job Zone</h2> 
+    <header>
+        <nav>
+            <div class="nav-wrapper #039be5 light-blue darken-1">
+              <a href="{{url_for('get_jobs')}}" class="brand-logo">Job Zone</a>
+              <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
+              <ul class="right hide-on-med-and-down">
+                <li><a href="{{url_for('get_jobs')}}">Home</a></li>
+                <li><a href="#">Jobs</a></li>
+                <li><a href="#">Employers</a></li>
+                <li><a href="#">Support</a></li>
+                <li><a href="#">Logout</a></li>
+                <li><a href="#">Log In</a></li>
+                <li><a href="{{url_for('register')}}">Register</a></li>
+              </ul>
+            </div>
+          </nav>
+        
+          <ul class="sidenav" id="mobile-demo">
+              <li class="center-align light-blue-text text-darken-4"><h4>Job Zone</h4></li> 
+            <li><a href="{{url_for('get_jobs')}}">Home</a></li>
+            <li><a href="#">Jobs</a></li>
+            <li><a href="#">Employers</a></li>
+            <li><a href="#">Support</a></li>
+            <li><a href="#">Logout</a></li>
+            <li><a href="#">Log In</a></li>
+            <li><a href="{{url_for('register')}}">Register</a></li>
+          </ul>
+                  
+    </header>
     {% block content %}
     {% endblock %}
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.0/jquery.min.js" integrity="sha512-0nVWK03Ud0k6o8wDkri8jxX9zQIn00ZHVud3iqBTwd2bGFwJDQShGVb3+vX1adCRxQckKQrIQMFmIA3tfWe+Mg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="{{url_for('static', filename='script/script.js')}}"></script>
+        <script src="{{url_for('static', filename='js/script.js')}}"></script>
 </body>
 </html>
