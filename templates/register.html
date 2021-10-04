@@ -3,28 +3,61 @@
 <h3 class="center-align">Register</h3>
 
 <div class="row">
-    <form class="col s12 m8 offset-m2" method="POST" action="{{url_for('register')}}">
-      <div class="card-panel">
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="fas fa-user-plus prefix light-blue-text text-darken-4"></i>
-                <input id="username" name="username" type="text" class="validate">
-                <label for="username">Username</label>
-              </div>
+  <form class="col s12 m8 offset-m2" method="POST" action="{{url_for('register')}}">
+    <div class="card-panel">
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="fas fa-user-tie prefix light-blue-text text-darken-4"></i>
+          <input id="firstname" name="firstname" type="text" class="validate">
+          <label for="firstname">Firstname</label>
         </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="fas fa-user-lock prefix light-blue-text text-darken-4"></i>
-              <input id="password" name="password" type="password" class="validate">
-              <label for="password">Password</label>
-            </div>
-          </div>
-          <div class="row">
-<button type="submit" class="col s12 btn-large light-blue darken-4 text-shadow">
-    Register <i class="fas fa-sign-in-alt"></i> 
-</button>
-              </div>
+        <div class="input-field col s6">
+          <i class="fas fa-user prefix light-blue-text text-darken-4"></i>
+          <input id="lastname" name="lastname" type="text" class="validate">
+          <label for="lastname">Lastname</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="fas fa-user-plus prefix light-blue-text text-darken-4"></i>
+          <input id="username" name="username" type="text" class="validate">
+          <label for="username">Username</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="fas fa-envelope prefix light-blue-text text-darken-4"></i>
+          <input id="email" name="email" type="text" class="validate">
+          <label for="email">Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="fas fa-user-lock prefix light-blue-text text-darken-4"></i>
+          <input id="password" name="password" type="password" class="validate">
+          <label for="password">Password</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s6">
+          <label>
+            <input name="role" value="jobseeker" type="radio" />
+            <span>Jobseeker</span>
+          </label>
+        </div>
+        <div class="col s6">
+          <label>
+            <input name="role" value="employer" type="radio" />
+            <span>Employer</span>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <button type="submit" class="col s12 btn-large light-blue darken-4 text-shadow">
+          Register <i class="fas fa-sign-in-alt"></i>
+        </button>
       </div>
     </div>
-  </div>
+</div>
+</div>
 {% endblock %}
