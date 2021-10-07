@@ -3,8 +3,8 @@ from flask import (Flask, flash, render_template,
  redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from werkzeug.utils  import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
-from werkzeug import secure_filename
 
 if os.path.exists("env.py"):
     import env
