@@ -130,8 +130,14 @@ def logout():
 def upload():
    if request.method == 'POST':
       f = request.files['file']
-      f.save(secure_filename(f.filename))
-      return redirect(url_for("profile", username=session["user"]))
+      f.save(os.path.join("static/images/", secure_filename(f.filename)))
+      imageUrl = "static/images/"+f.filename
+      mongo.db.employer_profile.update_one({"username":session["user"]},{"$set":{'imageurl':imageUrl}})
+      profile = mongo.db.employer_profile.find_one(
+                    {"username": session["user"]})
+      return render_template(
+            "employer/profile.html", profile=profile)
+      #return redirect(url_for("profile", username=session["user"]),imageUrl=imageUrl)
 
 
 if __name__ == "__main__":

@@ -10,10 +10,6 @@
             <span class="card-title activator grey-text text-darken-4">
                 <span style="text-align:center">Nicole Pinhal</span>
                 <i class="fas fa-pencil right"></i></span>
-            <form method="POST" action="{{url_for('upload'')}}" enctype="multipart/form-data">
-                <input type="file" name="file" />
-                <input type="submit" />
-            </form>
             <div class="row">
                 <div class="input-field col s6">
 
@@ -27,7 +23,7 @@
                 <div class="input-field col s6">
 
                     <label for="company">Company:&nbsp;
-                        {% if profile.username %}
+                        {% if  profile.username %}
                         {{ profile.company}}
                         {% else %}
                         <i>company name</i>
@@ -37,7 +33,7 @@
                 <div class="input-field col s6">
                     <label for="firstname">Address:&nbsp;
                         Address:&nbsp;
-                        {% if profile.address %}
+                        {% if  profile.address %}
                         {{ profile.address}}
                         {% else %}
                         <i>address here</i>
@@ -51,7 +47,7 @@
 
                     <label for="firstname">
                         Designation:&nbsp;
-                        {% if profile.designation %}
+                        {% if  profile.designation %}
                         {{ profile.designation}}
                         {% else %}
                         <i>designation</i>
@@ -81,8 +77,14 @@
             <span class="card-title grey-text text-darken-4">Edit Profile<i class="fas fa-close right"></i></span>
             <!-- <p>Here is some more information about this product that is only revealed once clicked on.</p> -->
             <div class="row">
+                <img class="profile-image" src={{profile.imageurl}}/>
+                <form method="POST" action="{{url_for('upload')}}" enctype="multipart/form-data">
+                    <input type="file" name="file" />
+                    <input type="submit" />
+                </form>
                 <form class="col s12 m12" method="POST" action="{{url_for('profile',username=session['user'])}}">
                     <!-- <div class="card-panel"> -->
+                        
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="fas fa-user-tie prefix light-blue-text text-darken-4"></i>
