@@ -104,7 +104,7 @@ def profile(username):
         else:
             profile = {
                 "username": session["user"],
-                "firstname": request.foaddrm.get("firstname"),
+                "firstname": request.form.get("firstname"),
                 "lastname": request.form.get("lastname"),
                 "company": request.form.get("company"),
                 "designation": request.form.get("designation"),
@@ -118,13 +118,15 @@ def profile(username):
         return render_template(
             "employer/profile.html", profile=profile)
 
-    username = mongo.db.users.find_one(
+    user = mongo.db.users.find_one(
             {"username": session["user"]})
-    session["role"] = "jobseeker" if username["jobseeker"] == 'true' else "employer"
+    session["role"] = "jobseeker" if user["jobseeker"] == 'true' else "employer"
     # render profile page if session contains user's information
     if session["user"]:
         profile = mongo.db.employer_profile.find_one(
                     {"username": session["user"]})
+        profile["firstname"] = user["firstname"]
+        profile["lastname"] = user["lastname"]
         return render_template(
             "employer/profile.html", profile=profile)
     
@@ -141,18 +143,27 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route('/upload', methods = ['GET', 'POST'])
-def upload():
-   if request.method == 'POST':
-      f = request.files['file']
-      f.save(os.path.join("static/images/", secure_filename(f.filename)))
-      imageUrl = "static/images/"+f.filename
-      mongo.db.employer_profile.update_one({"username":session["user"]},{"$set":{'imageurl':imageUrl}})
-      profile = mongo.db.employer_profile.find_one(
+@app.route("/postJob", methods=["GET", "POST"])
+def postJob():
+    if request.method == "POST":
+        job = {
+                "username": session["user"],
+                "title": request.form.get("title"),
+                "description": request.form.get("description"),
+                "skills": request.form.get("skills"),
+                "location": request.form.get("location"),
+                "salary": request.form.get("salary")
+            }
+        mongo.db.jobs.insert_one(job)
+        # mongo.db.employer_profile.insert_one(profile)
+        savedJob = mongo.db.jobs.find_one(
                     {"username": session["user"]})
-      return render_template(
-            "employer/profile.html", profile=profile)
-      #return redirect(url_for("profile", username=session["user"]),imageUrl=imageUrl)
+        return render_template(
+            "employer/postJob.html", savedJob=savedJob)
+    return redirect(url_for("postJob"))
+
+
+
 
 
 if __name__ == "__main__":
