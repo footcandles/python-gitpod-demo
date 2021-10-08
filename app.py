@@ -160,7 +160,7 @@ def postJob():
                     {"username": session["user"]})
         return render_template(
             "employer/postJob.html", savedJob=savedJob)
-    return redirect(url_for("postJob"))
+    return render_template("employer/postJob.html")
 
 
 
