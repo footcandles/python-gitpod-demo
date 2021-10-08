@@ -88,16 +88,31 @@ def get_employer():
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     if request.method == "POST":
-        profile = {
-            "username": session["user"],
-            "firstname": request.form.get("firstname"),
-            "lastname": request.form.get("lastname"),
-            "company": request.form.get("company"),
-            "designation": request.form.get("designation"),
-            "phone": request.form.get("phone"),
-            "address": request.form.get("address")
-        }
-        mongo.db.employer_profile.insert_one(profile)
+        f = request.files['file']
+        if f:
+            f.save(os.path.join("static/images/", secure_filename(f.filename)))
+            profile = {
+                "username": session["user"],
+                "firstname": request.form.get("firstname"),
+                "lastname": request.form.get("lastname"),
+                "company": request.form.get("company"),
+                "designation": request.form.get("designation"),
+                "phone": request.form.get("phone"),
+                "address": request.form.get("address"),
+                "imageurl": "images/"+f.filename
+            }
+        else:
+            profile = {
+                "username": session["user"],
+                "firstname": request.foaddrm.get("firstname"),
+                "lastname": request.form.get("lastname"),
+                "company": request.form.get("company"),
+                "designation": request.form.get("designation"),
+                "phone": request.form.get("phone"),
+                "address": request.form.get("address"),
+            }
+        mongo.db.employer_profile.update_one({"username":session["user"]},{"$set":profile})
+        # mongo.db.employer_profile.insert_one(profile)
         profile = mongo.db.employer_profile.find_one(
                     {"username": session["user"]})
         return render_template(
