@@ -7,9 +7,13 @@
     </div> -->
         <div class="card-content">
 
-            <span class="card-title activator grey-text text-darken-4">
-                <span style="text-align:center">Nicole Pinhal</span>
+            <span class="card-title activator grey-text text-darken-4"  style="text-align:center">
+                <span>Nicole Pinhal</span>
                 <i class="fas fa-pencil right"></i></span>
+                <div class="row">
+                    <div class="input-field col s12" style="text-align: center;">
+<img class="profile-image" src={{profile.imageurl}}/>
+                    </div>
             <div class="row">
                 <div class="input-field col s6">
 
@@ -77,14 +81,26 @@
             <span class="card-title grey-text text-darken-4">Edit Profile<i class="fas fa-close right"></i></span>
             <!-- <p>Here is some more information about this product that is only revealed once clicked on.</p> -->
             <div class="row">
+                <div class="file-field input-field" style="text-align: center;">
                 <img class="profile-image" src={{profile.imageurl}}/>
-                <form method="POST" action="{{url_for('upload')}}" enctype="multipart/form-data">
+                </div>
+                <!-- <form method="POST" action="{{url_for('upload')}}" enctype="multipart/form-data">
                     <input type="file" name="file" />
                     <input type="submit" />
-                </form>
+                </form> -->
                 <form class="col s12 m12" method="POST" action="{{url_for('profile',username=session['user'])}}">
                     <!-- <div class="card-panel"> -->
-                        
+                        <div class="row">
+                            <div class="file-field input-field">
+                                <div class="btn">
+                                  <span>Select Image</span>
+                                  <input type="file" name="file">
+                                </div>
+                                <div class="file-path-wrapper">
+                                  <input class="file-path validate" type="text">
+                                </div>
+                              </div>
+                        </div>
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="fas fa-user-tie prefix light-blue-text text-darken-4"></i>
@@ -105,8 +121,8 @@
                         </div>
                         <div class="input-field col s12">
                             <i class="fas fa-building prefix light-blue-text text-darken-4"></i>
-                            <textarea id="about" name="about" class="validate">{{profile.about}}</textarea>
-                            <label for="about">Company description</label>
+                            <textarea id="companydesc" name="companydesc" class="validate">{{profile.companydesc}}</textarea>
+                            <label for="companydesc">Company description</label>
                         </div>
                     </div>
                     <div class="row">
