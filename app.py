@@ -31,7 +31,7 @@ def register():
     if request.method == "POST":
         #check if username already exists in db
         existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
+            {"username": request.form.get("username")})
         
         if existing_user:
             flash("Username already exists")
@@ -128,7 +128,7 @@ def profile(username):
         profile["firstname"] = user["firstname"]
         profile["lastname"] = user["lastname"]
         return render_template(
-            "employer/profile.html", profile=profile)
+            "employer/profile.html", profile = profile)
     
     return redirect(url_for("login"))
 
@@ -159,11 +159,14 @@ def postJob():
         savedJob = mongo.db.jobs.find_one(
                     {"username": session["user"]})
         return render_template(
-            "employer/postJob.html", savedJob=savedJob)
+            "employer/postJob.html", savedJob = savedJob)
     return render_template("employer/postJob.html")
 
 
-
+@app.route("/jobs", methods=["GET", "POST"])
+def jobs():
+    jobs = mongo.db.jobs.find()
+    return render_template("employer/jobs.html", jobs = jobs)
 
 
 if __name__ == "__main__":
