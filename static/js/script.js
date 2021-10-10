@@ -61,5 +61,25 @@ $(document).ready(function () {
     });
 });
 
+function load_data(query)
+  {
+   $.ajax({
+    url:"/search/"+query,
+    method:"GET",
+    success:function(data)
+    {
+      $('#result').html(data);
+      $("#result").append(data.htmlresponse);
+    }
+   });
+  }
+  $('#bthSearch').click(function(){
+    var search = $("#search_text").val();
+    if(search != ''){
+      load_data(search);
+   }else{
+      load_data();
+   }
+  });
   
 });

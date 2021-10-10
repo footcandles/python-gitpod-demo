@@ -1,0 +1,31 @@
+<h5>{{numrows}} Jobs found</h3>
+    {% for row in jobs %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                .
+            </div>
+            {{row.title}}
+                {{row.description}}
+                {{row.skills}}   
+        </div>
+    </div>
+    {% endfor %}
+<!-- <table class="table table-striped custab">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Phone</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in jobs %}
+        <tr>
+            <td>{{row.title}}</td>
+            <td>{{row.description}}</td>
+            <td>{{row.skills}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table> -->

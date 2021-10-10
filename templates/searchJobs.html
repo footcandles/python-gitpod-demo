@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container search-table">
+    <p>
+    <h2 align="center">Search Jobs</h2>
+    </p>
+    <div class="search-box">
+            <div class="row">
+                <div class="col-md-9">
+                    <input type="text" name="search_text" id="search_text" class="form-control"
+                        placeholder="Search jobs by Skills, Location, Companies">
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" id="bthSearch" class="col s12 btn-large btnPrimary text-shadow">
+                        Search <i class="fas fa-search-in-alt"></i>
+                    </button>
+                </div>
+            </div>
+    </div>
+    <div id="result"></div>
+</div>
+{% endblock %}

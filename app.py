@@ -1,6 +1,6 @@
 import os
 from flask import (Flask, flash, render_template,
- redirect, request, session, url_for)
+ redirect, request, session, url_for, jsonify)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.utils  import secure_filename
@@ -254,6 +254,17 @@ def postJob():
 def jobs():
     jobs = mongo.db.jobs.find()
     return render_template("employer/jobs.html", jobs=jobs)
+
+
+@app.route("/search/<keywords>", methods=["GET"])
+def search(keywords):
+    if keywords == '0':
+        return render_template("searchJobs.html")
+    else:
+        jobs = mongo.db.jobs.find()
+        numrows=jobs.count()
+        return jsonify({'htmlresponse': render_template('response.html', jobs=jobs, numrows=numrows)})
+    return render_template("searchJobs.html")
 
 
 @app.route("/ajax_update", methods=["POST","GET"])
