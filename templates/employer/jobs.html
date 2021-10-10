@@ -1,34 +1,50 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="row">
-    <div class="col s12 m8 offset-m2">
+    <div class="col m12 m8 offset-m2" style="margin-left: 0%!important;">
         <div class="card-panel">
             <table class="responsive-table">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm8">
+                            <h4>Manage Jobs</h4>
+                        </div>
+                        <div class="btn btn-info" id="displayMessage" style="display:none; width:100%;margin-top:10px">
+                        </div>
+                    </div>
+                </div>
                 <thead>
                     <tr>
+                        <th id="jobIdHeader">Id</th>
                         <th>Title</th>
                         <th>Description</th>
                         <th>Skills</th>
                         <th>Salary</th>
                         <th>Location</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     {% for row in jobs %}
                     <tr>
+                        <td>{{row._id}}</td>
                         <td>{{row.title}}</td>
                         <td>{{row.description}}</td>
                         <td>{{row.skills}}</td>
                         <td>{{row.salary}}</td>
                         <td>{{row.location}}</td>
                         <td>
-                            <a class="edit" title="Edit" data-toggle="tooltip" id="{{row.id}}"><i class="fas fa-pencil"></i></a>
-                            <a class="delete" title="Delete" data-toggle="tooltip" id="{{row.id}}"><i class="fas fa-trash"></i></a>
+                            <a class="update" title="Update" data-toggle="tooltip" id="{{row.id}}"><i
+                                class="fas fa-user-plus"></i></a>
+                            <a class="edit" title="Edit" data-toggle="tooltip" id="{{row.id}}"><i
+                                    class="fas fa-pencil"></i></a>&nbsp;
+                            <a class="delete" title="Delete" data-toggle="tooltip" id="{{row.id}}"><i
+                                    class="fas fa-trash"></i></a>
                         </td>
                     </tr>
                     {% endfor %}
-                    
+
                 </tbody>
             </table>
         </div>

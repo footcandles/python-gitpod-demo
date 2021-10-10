@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="row">
-    <div class="card" style="height: 500px;margin-left: 18rem;margin-right: 18rem;margin-top: 6rem;">
+    <div class="card" style="height: 700px;margin-left: 18rem;margin-right: 18rem;margin-top: 6rem;">
         <div class="card-content">
 
             <span class="card-title activator grey-text text-darken-4" style="text-align:center!important">
@@ -13,12 +13,12 @@
                         onerror="this.src='{{url_for('static', filename='images/image-icon.jpg')}}'" />
                 </div>
             </div>
-            <div class="row">
+            <div class="row joseeker-profile-row">
                 <div class="input-field col s12" style="text-align: center;margin-top: -30px;">
                     <span>{{profile.firstname}}&nbsp;{{profile.lastname}}</span>
                 </div>
             </div>
-            <div class="row">
+            <div class="row joseeker-profile-row">
                 <div class="input-field col s6">
 
                     <label for="firstname">Email:&nbsp; {{profile.email}}</label>
@@ -27,17 +27,41 @@
                     <label for="firstname">Username:&nbsp;{{ profile.username}}</label>
                 </div>
             </div>
-            <div class="row">
-                <div class="input-field col s6">
-
-                    <label for="company">Company:&nbsp;
-                        {% if profile.company %}
-                        <span>{{ profile.company}}</span>
+            <div class="row joseeker-profile-row">
+                <div class="input-field col s12">
+                    <label for="firstname">Profile Description:&nbsp;
+                        {% if profile.description %}
+                        <span>{{ profile.description}}</span>
                         {% else %}
-                        <i>company name</i>
+                        <i>profile description here</i>
                         {% endif %}
                     </label>
                 </div>
+
+            </div>
+            <div class="row joseeker-profile-row">
+                <div class="input-field col s12">
+                    <label for="skills">Skills: &nbsp;
+                        {% if profile.skills %}
+                        <span>{{ profile.skills}}</span>
+                        {% else %}
+                        <i>skills here...</i>
+                        {% endif %}
+                    </label>
+                </div>
+            </div>
+            <div class="row joseeker-profile-row">
+                <div class="input-field col s12">
+                    <label for="resume">Resume :&nbsp;
+                        {% if profile.resumeurl %}
+                        <span>{{ profile.resumeurl}}</span>
+                        {% else %}
+                        <i>no resume added..</i>
+                        {% endif %}
+                    </label>
+                </div>
+            </div>
+            <div class="row">
                 <div class="input-field col s6">
                     <label for="address">Address:&nbsp;
                         <span>{% if profile.address %}</span>
@@ -48,37 +72,8 @@
 
                     </label>
                 </div>
-            </div>
-            <div class="row">
                 <div class="input-field col s6">
-
-                    <label for="designation">
-                        Designation:&nbsp;
-                        {% if profile.designation %}
-                        {{ profile.designation}}
-                        {% else %}
-                        <i>designation</i>
-                        {% endif %}
-
-                    </label>
-                </div>
-                <div class="input-field col s6">
-                    <label for="employer">User type:&nbsp; Employer</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s6">
-
-                    <label for="firstname">About Company:&nbsp;
-                        {% if profile.companydesc %}
-                        <span>{{ profile.companydesc}}</span>
-                        {% else %}
-                        <i>description here</i>
-                        {% endif %}
-                    </label>
-                </div>
-                <div class="input-field col s6">
-                    <label for="firstname"> <span>phone:&nbsp; </span> {% if profile.phone %}
+                    <label for="phone"> <span>phone:&nbsp; </span> {% if profile.phone %}
                         <span>{{ profile.phone}}</span> {% else %} <i>phone</i>
                         {% endif %}
                     </label>
@@ -95,14 +90,14 @@
                     <img class="profile-image" src="{{url_for('static', filename=profile.imageurl)}}"
                         onerror="this.src='{{url_for('static', filename='images/image-icon.jpg')}}'" / />
                 </div>
-                <form class="col s12 m12" method="POST" action="{{url_for('profile',username=session['user'])}}"
+                <form class="col s12 m12" method="POST" action="{{url_for('jobSeekerProfile',username=session['user'])}}"
                     enctype="multipart/form-data">
                     <!-- <div class="card-panel"> -->
                     <div class="row">
                         <div class="file-field input-field">
                             <div class="btn">
                                 <span>Select Image</span>
-                                <input type="file" name="file">
+                                <input type="file" name="imageFile">
                             </div>
                             <div class="file-path-wrapper">
                                 <input class="file-path validate" type="text">
@@ -124,24 +119,31 @@
                         </div>
                     </div>
                     <div class="row">
+                        
                         <div class="input-field col s12">
                             <i class="fas fa-building prefix light-blue-text text-darken-4"></i>
-                            <input id="company" name="company" type="text" class="validate" value="{{profile.company}}">
-                            <label for="company">Company name</label>
-                        </div>
-                        <div class="input-field col s12">
-                            <i class="fas fa-building prefix light-blue-text text-darken-4"></i>
-                            <textarea id="companydesc" name="companydesc"
-                                class="validate materialize-textarea">{{profile.companydesc}}</textarea>
-                            <label for="companydesc">Company description</label>
+                            <textarea id="profiledesc" name="profiledesc"
+                                class="validate materialize-textarea">{{profile.profiledesc}}</textarea>
+                            <label for="profiledesc">Profile description</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
                             <i class="fas fa-user-lock prefix light-blue-text text-darken-4"></i>
-                            <input id="designationss" name="designation" type="text" class="validate"
-                                value="{{profile.designation}}">
-                            <label for=" designation">Designation</label>
+                            <input id="skills" name="skills" type="text" class="validate"
+                                value="{{profile.skills}}">
+                            <label for="skills">Skills</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="file-field input-field">
+                            <div class="btn">
+                                <span>Select Resume</span>
+                                <input type="file" name="resumeDoc">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -164,7 +166,6 @@
                             Update Profile <i class="fas fa-sign-in-alt"></i>
                         </button>
                     </div>
-                    <!-- </div> -->
                 </form>
             </div>
         </div>
