@@ -1,4 +1,13 @@
 $(document).ready(function () {
+
+  //$("li").addClass("active")
+  $("li").click(function () {
+    if (!$(this).hasClass("active")) {
+      // var c = "login"
+      $("li.active").removeClass("active")
+      $(this).addClass("active")
+    }
+  })
   $('.sidenav').sidenav({
     edge: "right"
   });
@@ -44,42 +53,41 @@ $(document).ready(function () {
     }, function (data) {
       $("#displayMessage").html(data);
       $("#displayMessage").show();
-      setTimeout(function(){
+      setTimeout(function () {
         location.reload();
-      },1000)
-      
+      }, 1000)
+
     });
   });
 
 
-  $(document).on("click", ".delete", function(){
+  $(document).on("click", ".delete", function () {
     var id = $(this).parents('tr').find('td:nth-child(1)')[0].innerHTML
     $(this).parents("tr").remove();
-    $.post("/ajax_delete", { id: id}, function(data) {
-        $("#displayMessage").html(data);
-        $("#displayMessage").show();
+    $.post("/ajax_delete", {
+      id: id
+    }, function (data) {
+      $("#displayMessage").html(data);
+      $("#displayMessage").show();
     });
-});
-
-function load_data(query)
-  {
-   $.ajax({
-    url:"/search/"+query,
-    method:"GET",
-    success:function(data)
-    {
-      $('#result').html(data);
-      $("#result").append(data.htmlresponse);
-    }
-   });
-  }
-  $('#bthSearch').click(function(){
-    var search = $("#search_text").val();
-    if(search != ''){
-      load_data(search);
-   }else{
-      load_data();
-   }
   });
-  
+
+  function load_data(query) {
+    $.ajax({
+      url: "/search/" + query,
+      method: "GET",
+      success: function (data) {
+        $('#result').html(data);
+        $("#result").append(data.htmlresponse);
+      }
+    });
+  }
+  $('#bthSearch').click(function () {
+    var search = $("#search_text").val();
+    if (search != '') {
+      load_data(search);
+    } else {
+      load_data('1');
+    }
+  });
 });

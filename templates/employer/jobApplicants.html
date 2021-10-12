@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col m12 m8 offset-m2" style="margin-left: 0%!important;">
+        <div class="card-panel">
+            <table class="responsive-table">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm8">
+                            <h4>View Applicants</h4>
+                        </div>
+                        <div class="btn btn-info" id="displayMessage" style="display:none; width:100%;margin-top:10px">
+                        </div>
+                    </div>
+                </div>
+                <thead>
+                    <tr>
+                        <th id="jobIdHeader">Id</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Skills</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Download Resume</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for row in applicantsDetails %}
+                    <tr>
+                        <td>{{row._id}}</td>
+                        <td>{{row.firstname}} &nbsp; {{row.lastname}}</td>
+                        <td>{{row.profiledesc}}</td>
+                        <td>{{row.skills}}</td>
+                        <td>{{row.phone}}</td>
+                        <td>{{row.address}}</td>
+                        <td>
+                            <a class="resume" target="_blank" title="Download Resume" href="{{row.resumeurl}}" id="{{row._id}}">Download Resume </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

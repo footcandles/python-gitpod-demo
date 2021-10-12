@@ -9,7 +9,7 @@
                 <i class="fas fa-pencil right"></i></span>
             <div class="row">
                 <div class="input-field col s12" style="text-align: center;">
-                    <img class="profile-image" src="{{url_for('static', filename=profile.imageurl)}}"
+                    <img class="profile-image" src="{{profile.imageurl}}"
                         onerror="this.src='{{url_for('static', filename='images/image-icon.jpg')}}'" />
                 </div>
             </div>
@@ -54,7 +54,7 @@
                 <div class="input-field col s12">
                     <label for="resume">Resume :&nbsp;
                         {% if profile.resumeurl %}
-                        <span>{{ profile.resumeurl}}</span>
+                        <span><a target="_blank" href="{{profile.resumeurl}}">{{profile.resumeurl}}</a></span>
                         {% else %}
                         <i>no resume added..</i>
                         {% endif %}
@@ -87,14 +87,14 @@
             <!-- <p>Here is some more information about this product that is only revealed once clicked on.</p> -->
             <div class="row">
                 <div class="file-field input-field" style="text-align: center;">
-                    <img class="profile-image" src="{{url_for('static', filename=profile.imageurl)}}"
+                    <img class="profile-image" src="{{profile.imageurl}}"
                         onerror="this.src='{{url_for('static', filename='images/image-icon.jpg')}}'" / />
                 </div>
                 <form class="col s12 m12" method="POST" action="{{url_for('jobSeekerProfile',username=session['user'])}}"
                     enctype="multipart/form-data">
                     <!-- <div class="card-panel"> -->
                     <div class="row">
-                        <div class="file-field input-field">
+                        <!-- <div class="file-field input-field">
                             <div class="btn">
                                 <span>Select Image</span>
                                 <input type="file" name="imageFile">
@@ -102,19 +102,25 @@
                             <div class="file-path-wrapper">
                                 <input class="file-path validate" type="text">
                             </div>
+                        </div> -->
+                        <div class="input-field col s12">
+                        <i class="fas fa-file-image prefix light-blue-text text-darken-4"></i>
+                            <input id="imageFile" name="imageFile" type="text" class="validate"
+                                value="{{profile.imageurl}}">
+                            <label for="imageFile">Image File Url</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="fas fa-user-tie prefix light-blue-text text-darken-4"></i>
                             <input id="firstname" name="firstname" type="text" class="validate"
-                                value="{{profile.firstname}}">
+                                value="{{profile.firstname}}" required>
                             <label for="firstname">Firstname</label>
                         </div>
                         <div class="input-field col s6">
                             <i class="fas fa-user prefix light-blue-text text-darken-4"></i>
                             <input id="lastname" name="lastname" type="text" class="validate"
-                                value="{{profile.lastname}}">
+                                value="{{profile.lastname}}" required>
                             <label for="lastname">Lastname</label>
                         </div>
                     </div>
@@ -136,28 +142,25 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="file-field input-field">
-                            <div class="btn">
-                                <span>Select Resume</span>
-                                <input type="file" name="resumeDoc">
+                        <div class="input-field col s12">
+                            <i class="fas fa-file prefix light-blue-text text-darken-4"></i>
+                                <input id="resumeurl" name="resumeurl" type="text" class="validate"
+                                    value="{{profile.resumeurl}}">
+                                <label for="resumeurl">Resume Url</label>
                             </div>
-                            <div class="file-path-wrapper">
-                                <input class="file-path validate" type="text">
-                            </div>
-                        </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
                             <i class="fas fa-address-card prefix light-blue-text text-darken-4"></i>
                             <input id="address" name="address" type="text" class="validate" value="{{profile.address}}">
-                            <label for="address">Address</label>
+                            <label for="address" required>Address</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
                             <i class="fas fa-phone prefix light-blue-text text-darken-4"></i>
                             <input id="phone" name="phone" type="text" class="validate" value="{{profile.phone}}">
-                            <label for="phone">Phone</label>
+                            <label for="phone" required>Phone</label>
                         </div>
                     </div>
 

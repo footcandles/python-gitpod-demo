@@ -9,7 +9,7 @@
                 <i class="fas fa-pencil right"></i></span>
             <div class="row">
                 <div class="input-field col s12" style="text-align: center;">
-                    <img class="profile-image" src="{{url_for('static', filename=profile.imageurl)}}"
+                    <img class="profile-image" src="{{profile.imageurl}}"
                         onerror="this.src='{{url_for('static', filename='images/image-icon.jpg')}}'" />
                 </div>
             </div>
@@ -92,7 +92,7 @@
             <!-- <p>Here is some more information about this product that is only revealed once clicked on.</p> -->
             <div class="row">
                 <div class="file-field input-field" style="text-align: center;">
-                    <img class="profile-image" src="{{url_for('static', filename=profile.imageurl)}}"
+                    <img class="profile-image" src="{{profile.imageurl}}"
                         onerror="this.src='{{url_for('static', filename='images/image-icon.jpg')}}'" / />
                 </div>
                 <form class="col s12 m12" method="POST" action="{{url_for('profile',username=session['user'])}}"

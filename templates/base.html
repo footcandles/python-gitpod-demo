@@ -32,6 +32,7 @@
                     <li><a href="{{ url_for('profile', username=session['user'])}}">Profile</a></li>
                     <li><a href="{{ url_for('postJob')}}">Post Jobs</a></li>
                     <li><a href="{{ url_for('jobs')}}">Manage Jobs</a></li>
+                    <li><a href="{{ url_for('jobApplicants')}}">Job Applicants</a></li>
                     <li><a href="{{ url_for('logout')}}">Log Out</a></li>
                     {% elif session.user and session["role"] == "jobseeker" %}
                     <li><a href="{{ url_for('jobSeekerProfile', username=session['user'])}}">Profile</a></li>
