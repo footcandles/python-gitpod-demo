@@ -16,8 +16,7 @@ body {
 }
 
 .menu-background {
-    rgb(9, 148, 218) !important;
-    background: linear-gradient(90deg, rgb(0, 116, 173) 0%, rgb(0, 64, 153) 100%);
+    background: linear-gradient(90deg, rgb(0, 116, 173) 0%, rgb(0, 64, 153) 100%)!important;
 }
 
 .btnPrimary {
